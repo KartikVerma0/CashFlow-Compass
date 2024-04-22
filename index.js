@@ -33,6 +33,12 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
+app.get('/data/:dataId', (req, res) => {
+    const { dataId } = req.params;
+    res.render('data', { dataId })
+
+})
+
 
 app.listen(port, () => {
     console.log(`Backend server running on port ${port}`);
