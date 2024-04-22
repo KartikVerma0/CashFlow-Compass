@@ -1,10 +1,23 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv'
+dotenv.config()
 
 import { fileURLToPath } from 'url';
 import path from 'path';
 
 const app = express();
 const port = 4000;
+
+const connectToDatabase = async () => {
+    try {
+        await mongoose.connect(process.env.DB_CONNECTION_STRING)
+        console.log("Connected to Database");
+    } catch (e) {
+        console.log("Problem connecting to Database", e);
+    }
+}
+connectToDatabase()
 
 
 
