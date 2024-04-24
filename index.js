@@ -68,37 +68,34 @@ app.post("/login", async (req, res) => {
 });
 
 // const User = require("./models/user");
-
 app.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
 
-  try {
-    // Check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res
-        .status(400)
-        .json({ error: "Username or email already exists." });
-    }
-
-    // Create a new user
-    const newUser = new User({
-      username,
-      email,
-      password, // For simplicity, we're storing the password directly
-    });
-
-    // Save the new user to the database
-    await newUser.save();
-
-    // Optionally, you can handle additional logic like sending a confirmation email, etc.
-
-    res
-      .status(201)
-      .json({ message: "User created successfully", user: newUser });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to create user", details: error });
+  // Check if user already exists
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return res.status(400).json({ error: "Username or email already exists." });
   }
+
+  // Create a new user
+  const newUser = new User({
+    username,
+    email,
+    password, // For simplicity, we're storing the password directly
+  });
+
+  // Save the new user to the database
+  newUser
+    .save()
+    .then(() => {
+      // Optionally, you can handle additional logic like sending a confirmation email, etc.
+      res.redirect("/login");
+    })
+    .catch((error) => {
+      // Handle any errors that occur during user creation
+      console.error("Error creating user:", error);
+      res.status(500).json({ error: "An unexpected error occurred." });
+    });
 });
 
 app.get("/", (req, res) => {
