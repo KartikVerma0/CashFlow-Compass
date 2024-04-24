@@ -19,6 +19,8 @@
         <img src="/images/piggy.ico" alt="Logo" width="50" height="40" class="d-inline-block align-text-top" />
         <b> CashFlow Compass </b>
       </a>
+      <p>
+      </p>
       <% if(!email) {%>
         <div>
           <a href="/login" class="btn btn-success">Login</a>
@@ -26,7 +28,9 @@
         </div>
         <% }else{%>
           <div>
-            <a href="/logout" class="btn btn-success">Logout</a>
+            <%= role %>
+
+              <a href="/logout" class="btn btn-success">Logout</a>
           </div>
 
           <%}%>
