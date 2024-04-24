@@ -6,8 +6,8 @@ body {
   height: 100vh; /* Make the body full height of the viewport */
   margin: 0; /* Remove default margin */
   background-image: linear-gradient(
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.5) 100%
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.4) 100%
     ),
     url("https://images.pexels.com/photos/5980866/pexels-photo-5980866.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); /* Add background image */
   background-size: cover; /* Cover the entire background */
@@ -27,12 +27,14 @@ h1 {
 
 form {
   padding: 20px; /* Add padding to form */
-  border: 3px solid #0056b3;
   /* background-color: #fff; */
   font-style: italic;
   border-radius: 8px;
   font-weight: 700;
   box-sizing: border-box;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  border: 3px solid #0056b3;
 }
 
 label {
