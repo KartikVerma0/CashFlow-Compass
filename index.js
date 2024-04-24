@@ -61,6 +61,7 @@ app.post("/login", async (req, res) => {
     req.session.userId = user.id;
     req.session.email = user.email;
     req.session.username = user.username;
+    req.session.role = user.role;
     res.redirect("/");
   } else {
     res.render("login", { error: "Invalid username or password" });
@@ -99,9 +100,8 @@ app.post("/signup", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  const { username, email } = req.session;
-  console.log(req.session.email);
-  res.render("index", { username, email });
+  const { username, email, role } = req.session;
+  res.render("index", { username, email, role });
 });
 
 app.get("/data/:dataId", (req, res) => {
