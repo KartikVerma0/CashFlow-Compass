@@ -29,40 +29,40 @@ Router.route("/login")
         }
     });
 
-
 Router.route("/signup")
-    .get((req, res) => {
-        res.render("signup/signup");
-    })
-    .post(async (req, res) => {
-        const { username, email, password } = req.body;
+  .get((req, res) => {
+    res.render("signup/signup");
+  })
+  .post(async (req, res) => {
+    const { name, mobile, address, email, password } = req.body;
 
-        // Check if user already exists
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json({ error: "Username or email already exists." });
-        }
+    try {
+      // Check if user already exists
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({ error: "Email already exists." });
+      }
 
-        // Create a new user
-        const newUser = new User({
-            username,
-            email,
-            password, // For simplicity, we're storing the password directly
-        });
+      // Create a new user
+      const newUser = new User({
+        name,
+        mobile,
+        address,
+        email,
+        password,
+      });
 
-        // Save the new user to the database
-        newUser
-            .save()
-            .then(() => {
-                // Optionally, you can handle additional logic like sending a confirmation email, etc.
-                res.redirect("/login");
-            })
-            .catch((error) => {
-                // Handle any errors that occur during user creation
-                console.error("Error creating user:", error);
-                res.status(500).json({ error: "An unexpected error occurred." });
-            });
-    });
+      // Save the new user to the database
+      await newUser.save();
+
+      // Optionally, you can handle additional logic like sending a confirmation email, etc.
+      res.redirect("/login");
+    } catch (error) {
+      // Handle any errors that occur during user creation
+      console.error("Error creating user:", error);
+      res.status(500).json({ error: "An unexpected error occurred." });
+    }
+  });
 
 Router.get("/logout", (req, res) => {
     // Clear the user's session
