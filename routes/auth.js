@@ -86,7 +86,7 @@ Router.get("/profile", async (req, res) => {
     }
 
     // Fetch user data from the database based on the stored user ID
-    const user = await user.findById(req.session.userId);
+    const user = await User.findById(req.session.userId);
 
     // If user not found, handle error
     if (!user) {
