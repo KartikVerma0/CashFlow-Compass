@@ -21,7 +21,7 @@ Router.route("/login")
             // Store user ID in session
             req.session.userId = user.id;
             req.session.email = user.email;
-            req.session.username = user.username;
+            req.session.username = user.username;   
             req.session.role = user.role;
             res.redirect("/dashboard");
         } else {
