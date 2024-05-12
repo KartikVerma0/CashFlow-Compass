@@ -76,11 +76,11 @@ Router.get("/logout", (req, res) => {
     });
 });
 
-//profile page route
+
 Router.get("/profile", async (req, res) => {
   try {
     // Check if user is authenticated
-    if (!req.session.userId) {
+    if(!req.session.userId) { // qkn
       // If not authenticated, redirect to login page
       return res.redirect("/login");
     }
