@@ -5,12 +5,16 @@ const { Schema } = mongoose;
 // Define the schema for the user model
 const userSchema = new Schema(
   {
-    username: {
+    name: {
+      type: String,
+      required: true,
+    },
+    mobile: {
       type: String,
       required: true,
       unique: true,
     },
-    password: {
+    address: {
       type: String,
       required: true,
     },
@@ -19,12 +23,16 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    password: {
+      type: String,
+      required: true,
+    },
     role: {
       type: String,
       required: true,
-      enum: ['User', 'Administrator'],
-      default: 'User'
-    }
+      enum: ["User", "Administrator"],
+      default: "User",
+    },
   },
   { timestamps: true }
 );
