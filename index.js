@@ -42,12 +42,12 @@ app.use("/", authRouter)
 
 app.get("/", (req, res) => {
   const { username, email, role } = req.session;
-  res.render("index/index", { username, email, role });
+  res.render("index/index", { username, email });
 });
 
 app.get("/dashboard", (req, res) => {
-  const { username, email, role } = req.session;
-  res.render("dashboard/dashboard", { username, email, role });
+  const { username, email } = req.session;
+  res.render("dashboard/dashboard", { username, email });
 });
 
 app.get("/data/:dataId", (req, res) => {
