@@ -2,26 +2,39 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Login</title>
-   <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
+
 <body>
-    <div class="login-container">
-        <h1>Login</h1>
-        <form action="/login" method="POST">
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required />
+    <nav class="conatiner flex m-5 items-center gap-5">
+        <img class="h-20" src="/images/compass.png">
+        <p class="font-josefin-slab flex flex-col text-2xl"><span>CashFlow</span> <span>Compass</span></p>
+    </nav>
+    <div class="text-center mx-auto mt-48 md:w-1/4 sm:w-1/2 w-1/2">
+        <h1 class="font-josefin-slab text-6xl">Login</h1>
+        <form action="/login" method="POST" class="bg-indigo-200 p-8 rounded-xl">
+            <div class="mb-4">
+                <label for="email" class="leading-none font-josefin-sans block text-left">Email</label>
+                <input class="w-full p-1 font-josefin-sans text-sm rounded" type="email" id="email" name="email"
+                    required />
             </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required />
+            <div class="mb-4">
+                <label for="password" class="leading-none font-josefin-sans block text-left">Password</label>
+                <input class="w-full p-1 rounded" type="password" id="password" name="password" required />
             </div>
-            <button type="submit">Login</button>
+            <button
+                class="w-full mb-4 bg-indigo-950 hover:bg-indigo-800 text-indigo-50 font-josefin-sans font-light text-lg p-1 rounded">Login</button>
+            <p class="text-sm font-light text-indigo-800 font-josefin-sans">Doesn’t have an Account? <a href="/signup"
+                    class="text-indigo-900 font-bold">Create
+                    Account</a></p>
         </form>
     </div>
 </body>
+
 </html>

@@ -1,64 +1,16 @@
-body {
-  font-family: Arial, sans-serif;
-  display: flex; /* Use flexbox to center content vertically and horizontally */
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  height: 100vh; /* Make the body full height of the viewport */
-  margin: 0; /* Remove default margin */
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0.4) 100%
-    ),
-    url("https://images.pexels.com/photos/5980866/pexels-photo-5980866.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); /* Add background image */
-  background-size: cover; /* Cover the entire background */
-  background-position: center; /* Center the background */
-}
-.login-container {
-  text-align: center;
-  max-width: 300px;
-  width: 100%; /* Set container width to 100% */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kulim+Park:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+.font-josefin-slab {
+  font-family: 'Josefin Slab', 'serif';
 }
 
-h1 {
-  color: #333;
-  font-style: italic;
-  font-weight: 900;
+.font-josefin-sans {
+  font-family: 'Josefin Sans', 'sans serif';
 }
 
 form {
-  padding: 20px; /* Add padding to form */
-  /* background-color: #fff; */
-  font-style: italic;
-  border-radius: 8px;
-  font-weight: 700;
-  box-sizing: border-box;
-  background: transparent;
-  backdrop-filter: blur(20px);
-  border: 3px solid #0056b3;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-input[type="email"],
-input[type="password"],
-button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #0056b3;
-  color: #fff;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: darkblue;
+  margin-top: -1rem
 }
