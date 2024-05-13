@@ -78,28 +78,29 @@ Router.get("/logout", (req, res) => {
 
 
 Router.get("/profile", async (req, res) => {
-  try {
-    // Check if user is authenticated
-    if(!req.session.userId) { // qkn
-      // If not authenticated, redirect to login page
-      return res.redirect("/login");
+    const { role } = req.session
+    try {
+        // Check if user is authenticated
+        if (!req.session.userId) { // qkn
+            // If not authenticated, redirect to login page
+            return res.redirect("/login");
+        }
+
+        // Fetch user data from the database based on the stored user ID
+        const user = await User.findById(req.session.userId);
+
+        // If user not found, handle error
+        if (!user) {
+            console.log("User not found");
+            return res.status(404).send("User not found");
+        }
+
+        // Render the profile page with user data
+        res.render("profile/profile", { user, role });
+    } catch (error) {
+        console.error("Error rendering profile page:", error);
+        res.status(500).send("Internal Server Error");
     }
-
-    // Fetch user data from the database based on the stored user ID
-    const user = await User.findById(req.session.userId);
-
-    // If user not found, handle error
-    if (!user) {
-      console.log("User not found");
-      return res.status(404).send("User not found");
-    }
-
-    // Render the profile page with user data
-    res.render("profile/profile", { user });
-  } catch (error) {
-    console.error("Error rendering profile page:", error);
-    res.status(500).send("Internal Server Error");
-  }
 });
 
 export default Router
