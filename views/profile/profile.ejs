@@ -10,44 +10,11 @@
 </head>
 
 <body>
-    <nav class="conatiner flex m-5 items-center justify-between">
-        <div class="flex items-center gap-5">
-            <img class="h-20" src="/images/compass.png">
-            <p class="font-josefin-slab flex flex-col text-2xl"><span>CashFlow</span> <span>Compass</span></p>
-        </div>
-        <div class="flex items-center gap-5">
-            <a href="/logout"
-                class="bg-indigo-50 hover:bg-transparent text-indigo-800 hover:text-indigo-800 border-indigo-800 border-2 font-kulim-park rounded-full py-1 px-10 text-lg">Logout</a>
-        </div>
-    </nav>
-    <span
-        class="relative z-10 mt-24  mx-auto w-24 h-24 bg-rose-300 block text-rose-50 text-2xl font-bold rounded-full flex items-center justify-center">
-        <%= user.username.charAt(0).toUpperCase() %>
-    </span>
-    <main class="mx-auto p-16  rounded-xl w-1/3 bg-indigo-50 ">
-        <h1 class="text-4xl text-center font-josefin-slab">Profile Information</h1>
-        <div class="mt-4 flex gap-4 flex-wrap justify-between font-kulim-park">
-            <p><span class="font-bold block text-lg">Username:</span>
-                <%= user.username %>
-            </p>
-            <p><span class="font-bold block text-lg">Name:</span>
-                <%= user.fname %>
-                    <%= user.lname %>
-            </p>
-            <p><span class="font-bold block text-lg">Mobile:</span>
-                <%= user.mobile %>
-            </p>
-            <p><span class="font-bold block text-lg">Address:</span>
-                <%= user.address %>
-            </p>
-            <p><span class="font-bold block text-lg">Email:</span>
-                <%= user.email %>
-            </p>
-            <p><span class="font-bold block text-lg">Role:</span>
-                <%= role %>
-            </p>
-        </div>
-    </main>
+    <h1>Welcome to Your Profile</h1>
+    <p>Username: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+    <!-- Add more profile information here as needed -->
+    <a href="/logout">Logout</a>
 </body>
 
 </html>
