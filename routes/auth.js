@@ -35,16 +35,25 @@ Router.route("/signup")
         res.render("signup/signup");
     })
     .post(async (req, res) => {
-        const { username, email, password } = req.body;
+        const { fname, lname, mobile, address, username, email, password } = req.body;
 
-        // Check if user already exists
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json({ error: "Username or email already exists." });
+        try {
+            // Check if user already exists
+            const existingUser = await User.findOne({ email });
+            if (existingUser) {
+                return res.status(400).json({ error: "Username or email already exists." });
+            }
+        } catch (error) {
+            console.error("Server Error, Error: \n", error.message)
+            res.status(500).json({ error: "An unexpected error occurred." });
         }
 
         // Create a new user
         const newUser = new User({
+            fname,
+            lname,
+            mobile,
+            address,
             username,
             email,
             password, // For simplicity, we're storing the password directly
