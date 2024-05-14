@@ -29,7 +29,7 @@ Router.route("/login")
         }
     });
 
-.post(async (req, res) => {
+Router.post(async (req, res) => {
   try {
     const { fname, lname, mobile, address, username, email, password } = req.body;
 
