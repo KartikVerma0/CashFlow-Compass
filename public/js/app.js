@@ -1,4 +1,5 @@
-import { calcFV, PMT, IPMT, NPER } from "./calculations.js";
+import { IPMT, NPER, PMT, calcFV } from "./calculations.js";
+
 // range and text inputs
 const sliderGoal = document.getElementById("savingsRange");
 const inputGoal = document.getElementById("savingsInput");
@@ -161,26 +162,26 @@ const calculate = () => {
   if (years > 1) {
     actualTime.innerHTML = ` <span> After ${years} years you will have $${FV}</span><br>
   <span>The actual amount of time needed to save ${formatCurrency(
-    goal
-  )} saving ${formatCurrency(
+      goal
+    )} saving ${formatCurrency(
       monthlySaved
     )} per month is ${actYears} years and ${actMonths} months </span><br>
   <span>Saving ${formatCurrency(
-    Ppmt
-  )} per month will get you to your savings goal in ${years} years.
+      Ppmt
+    )} per month will get you to your savings goal in ${years} years.
   `;
   } else {
     actualTime.innerHTML = ` <span> After ${years} year you will have ${formatCurrency(
       FV
     )}</span><br>
   <span>The actual amount of time needed to save ${formatCurrency(
-    goal
-  )} saving ${formatCurrency(
+      goal
+    )} saving ${formatCurrency(
       monthlySaved
     )} per month is ${actYears} years and ${actMonths} months </span><br>
   <span>Saving ${formatCurrency(
-    Ppmt
-  )} per month will get you to your savings goal in ${years} years.
+      Ppmt
+    )} per month will get you to your savings goal in ${years} years.
   `;
   }
   chartDiv.innerHTML = `<span>    Actual monthly savings according to plan vs needed monthly saving to
@@ -200,42 +201,41 @@ const calculate = () => {
       "table-sm",
       "caption-top"
     );
-    tbl.innerHTML = `<caption class="text-center">Summary</caption>`;
     const tblBody = document.createElement("tbody");
     const tblHeader = document.createElement("thead");
     const tblFooter = document.createElement("tfoot");
     tblHeader.innerHTML = `
-    <tr><th class="text-center">Result Summary</th></tr>`;
+    <tr><th>Result Summary</th></tr>`;
     tblBody.innerHTML = `
     <tr>  
-    <td class="text-end">Savings goal </td>
-    <td class="text-end"> ${formatCurrency(goal)}</td>
+    <td>Savings goal </td>
+    <td> ${formatCurrency(goal)}</td>
     </tr>
     <tr>  
-    <td class="text-end">Target years to save </td>
-    <td class="text-end"> ${years}</td>
+    <td>Target years to save </td>
+    <td> ${years}</td>
      </tr>
     <tr>  
-    <td class="text-end">Amount currently saved </td> 
-    <td class="text-end"> ${formatCurrency(currentSaved)}</td> 
+    <td>Amount currently saved </td> 
+    <td> ${formatCurrency(currentSaved)}</td> 
      </tr>
     <tr>  
-    <td class="text-end">Expected rate of return(MPR)</td>
-     <td class="text-end"> ${DisplayRate}%</td>
+    <td>Expected rate of return(MPR)</td>
+     <td> ${DisplayRate}%</td>
       </tr>
     <tr>  
-    <td class="text-end">Inflation rate  </td>
-      <td class="text-end"> ${expectedInflation}%</td>
+    <td>Inflation rate  </td>
+      <td> ${expectedInflation}%</td>
       </tr>   
      `;
     tblFooter.innerHTML = `
     <tr> 
-      <td class="text-end">Total after ${years} years </td>
-      <td class="text-end"> ${formatCurrency(growthByYear[years])}</td>
+      <td>Total after ${years} years </td>
+      <td> ${formatCurrency(growthByYear[years])}</td>
     </tr>
     <tr>    
-      <td class="text-end">Amount required to meet goal in ${years} years</td>
-      <td class="text-end"> ${formatCurrency(Ppmt)} monthly</td>
+      <td>Amount required to meet goal in ${years} years</td>
+      <td> ${formatCurrency(Ppmt)} monthly</td>
     </tr> `;
     tbl.appendChild(tblHeader);
     tbl.appendChild(tblBody);
@@ -258,39 +258,39 @@ const calculate = () => {
       "table-sm",
       "caption-top"
     );
-    tblB.innerHTML = `<caption class="text-center">By Year</caption>`;
+    tblB.innerHTML = `<caption>By Year</caption>`;
     const tblBodyB = document.createElement("tbody");
     const tblHeaderB = document.createElement("thead");
     const trFirstB = document.createElement("tr");
     tblHeaderB.innerHTML = `
                     <tr>  
-                    <th class="text-center">Years ${years}</th>
-                    <th class="text-center">Contributing ${formatCurrency(
-                      monthlySaved
-                    )}</th>
-                    <th class="text-center">Contributing ${formatCurrency(
-                      Ppmt
-                    )} to get to goal</th> 
+                    <th>Years ${years}</th>
+                    <th>Contributing ${formatCurrency(
+      monthlySaved
+    )}</th>
+                    <th>Contributing ${formatCurrency(
+      Ppmt
+    )} to get to goal</th> 
                     </tr>`;
     trFirstB.innerHTML = `<tr>  
                     <td></td>
-                    <td class="text-end">${formatCurrency(
-                      growthByYear[0]
-                    )} Starting Balance</td>
-                    <td class="text-end">${formatCurrency(
-                      growthByYearNeededToBeSaved[0]
-                    )} Starting Balance</td> 
+                    <td>${formatCurrency(
+      growthByYear[0]
+    )} Starting Balance</td>
+                    <td>${formatCurrency(
+      growthByYearNeededToBeSaved[0]
+    )} Starting Balance</td> 
                     </tr>`;
     for (let i = 1; i < yearsToGrow.length; i++) {
       const rowB = document.createElement("tr");
       let trsB = `<tr>  
-                      <td class="text-end">${yearsToGrow[i]}</td>
-                      <td class="text-end">${formatCurrency(
-                        growthByYear[i]
-                      )}</td>
-                      <td class="text-end">${formatCurrency(
-                        growthByYearNeededToBeSaved[i]
-                      )}</td> 
+                      <td>${yearsToGrow[i]}</td>
+                      <td>${formatCurrency(
+        growthByYear[i]
+      )}</td>
+                      <td>${formatCurrency(
+        growthByYearNeededToBeSaved[i]
+      )}</td> 
                       </tr>`;
       rowB.innerHTML = trsB;
       tblBodyB.prepend(trFirstB);
@@ -368,27 +368,7 @@ const displayChart = () => {
           label: "Plan monthly $",
           data: growthByYear,
           backgroundColor: [
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-          ],
-          borderColor: [
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
+            "rgba(199, 210, 254, 1)",
           ],
           borderWidth: 1,
         },
@@ -396,27 +376,7 @@ const displayChart = () => {
           label: "Needed monthly $",
           data: growthByYearNeededToBeSaved,
           backgroundColor: [
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-
-            "rgba(54, 162, 235, 1)",
-          ],
-          borderColor: [
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
-            "rgba(47, 162, 47, 0.2)",
+            "rgba(49, 46, 129, 0.9)",
           ],
           borderWidth: 1,
         },
