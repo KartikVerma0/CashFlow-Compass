@@ -5,16 +5,28 @@ const { Schema } = mongoose;
 // Define the schema for the user model
 const userSchema = new Schema(
   {
-    name: {
+    fname: {
+      type: String,
+      required: true,
+    },
+    lname: {
       type: String,
       required: true,
     },
     mobile: {
+      type: Number,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    username: {
       type: String,
       required: true,
       unique: true,
     },
-    address: {
+    password: {
       type: String,
       required: true,
     },

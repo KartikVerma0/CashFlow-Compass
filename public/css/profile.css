@@ -3,13 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
 .font-josefin-slab {
-  font-family: 'Josefin Slab', 'serif';
+    font-family: 'Josefin Slab', 'serif';
 }
 
 .font-kulim-park {
-  font-family: 'Kulim Park', 'serif';
+    font-family: 'Kulim Park', 'serif';
 }
 
 .font-krona-one {
-  font-family: 'Krona One', 'sans serif';
+    font-family: 'Krona One', 'sans serif';
+}
+
+main {
+    margin-top: -3rem;
 }

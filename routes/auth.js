@@ -30,21 +30,29 @@ Router.route("/login")
     });
 
 Router.route("/signup")
-  .get((req, res) => {
-    res.render("signup/signup");
-  })
-  .post(async (req, res) => {
-    const { name, mobile, address, email, password } = req.body;
+    .get((req, res) => {
+        res.render("signup/signup");
+    })
+    .post(async (req, res) => {
+        const { fname, lname, mobile, address, username, email, password } = req.body;
 
-    try {
-      // Check if user already exists
-      const existingUser = await User.findOne({ email });
-      if (existingUser) {
-        return res.status(400).json({ error: "Email already exists." });
-      }
+        try {
+            // Check if user already exists
+            const existingUser = await User.findOne({ email });
+            if (existingUser) {
+                return res.status(400).json({ error: "Username or email already exists." });
+            }
+        } catch (error) {
+            console.error("Server Error, Error: \n", error.message)
+            res.status(500).json({ error: "An unexpected error occurred." });
+        }
 
       // Create a new user
       const newUser = new User({
+            fname,
+            lname,
+            mobile,
+            address,
         name,
         mobile,
         address,
@@ -78,28 +86,29 @@ Router.get("/logout", (req, res) => {
 
 
 Router.get("/profile", async (req, res) => {
-  try {
-    // Check if user is authenticated
-    if(!req.session.userId) { // qkn
-      // If not authenticated, redirect to login page
-      return res.redirect("/login");
+    const { role } = req.session
+    try {
+        // Check if user is authenticated
+        if (!req.session.userId) { // qkn
+            // If not authenticated, redirect to login page
+            return res.redirect("/login");
+        }
+
+        // Fetch user data from the database based on the stored user ID
+        const user = await User.findById(req.session.userId);
+
+        // If user not found, handle error
+        if (!user) {
+            console.log("User not found");
+            return res.status(404).send("User not found");
+        }
+
+        // Render the profile page with user data
+        res.render("profile/profile", { user, role });
+    } catch (error) {
+        console.error("Error rendering profile page:", error);
+        res.status(500).send("Internal Server Error");
     }
-
-    // Fetch user data from the database based on the stored user ID
-    const user = await User.findById(req.session.userId);
-
-    // If user not found, handle error
-    if (!user) {
-      console.log("User not found");
-      return res.status(404).send("User not found");
-    }
-
-    // Render the profile page with user data
-    res.render("profile/profile", { user });
-  } catch (error) {
-    console.error("Error rendering profile page:", error);
-    res.status(500).send("Internal Server Error");
-  }
 });
 
 export default Router
