@@ -22,6 +22,8 @@ Router.route("/login")
             req.session.userId = user.id;
             req.session.email = user.email;
             req.session.username = user.username;
+            req.session.fname = user.fname;
+            req.session.lname = user.lname;
             req.session.role = user.role;
             res.redirect("/dashboard");
         } else {
