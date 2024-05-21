@@ -1,3 +1,4 @@
+import User from "./models/users.js";
 import authRouter from "./routes/auth.js";
 import dotenv from "dotenv";
 import express from "express";
@@ -41,7 +42,7 @@ app.use(session(sessionObject));
 app.use("/", authRouter)
 app.get("/", (req, res) => {
   const { username, email, role } = req.session;
-  res.render("index/index", { username, email });
+  return res.render("index/index", { username, email });
 });
 
 app.use((req, res, next) => {
@@ -53,13 +54,23 @@ app.use((req, res, next) => {
   next()
 })
 app.get("/dashboard", (req, res) => {
-  const { username, email } = req.session;
-  res.render("dashboard/dashboard", { username, email });
+  const { username, email, role } = req.session;
+  return res.render("dashboard/dashboard", { username, email, role });
 });
+
+app.get("/admin/dashboard", async (req, res) => {
+  const { username, email, role, fname, lname } = req.session;
+  try {
+    const users = await User.find({ role: 'User' })
+    return res.render("adminDashboard/adminDashboard", { username, email, users });
+  } catch (error) {
+    return res.render("adminDashboard/adminDashboard", { username, email, users: [{ name: "Server Error" }] });
+  }
+})
 
 app.get("/data/:dataId", (req, res) => {
   const { dataId } = req.params;
-  res.render("data/data", { dataId });
+  return res.render("data/data", { dataId });
 });
 
 

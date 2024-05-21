@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/compass.png" type="favicon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <nav class="conatiner flex m-5 items-center justify-between">
+        <div class="flex items-center gap-5">
+            <img class="h-20" src="/images/compass.png">
+            <p class="font-josefin-slab flex flex-col text-2xl"><span>CashFlow</span> <span>Compass</span></p>
+        </div>
+        <div class="flex items-center gap-5">
+            <a href="/profile"><span
+                    class="bg-rose-400 text-rose-50 rounded-full w-8 h-8 flex items-center justify-center">
+                    <%= username?.charAt(0).toUpperCase() %>
+                </span>
+            </a>
+
+            <a href="/logout"
+                class="bg-indigo-50 hover:bg-transparent text-indigo-800 hover:text-indigo-800 border-indigo-800 border-2 font-kulim-park rounded-full py-1 px-10 text-lg">Logout</a>
+        </div>
+    </nav>
+    <h1 class="font-kulim-park mx-10 mt-24 font-bold text-5xl text-indigo-950">Users</h1>
+    <section class="mx-10 flex gap-6 mt-10">
+        <% for(let userIndex=0;userIndex<users.length;userIndex++){ %>
+            <div class="w-1/5 bg-indigo-50 rounded-3xl p-6 pb-10">
+                <div class="flex flex-col font-krona-one">
+                    <h5 class="text-xl">
+                        <%= `${users[userIndex].fname} ${users[userIndex].lname}` %>
+                    </h5>
+                    <span class="text-sm mt-1">
+                        <%= users[userIndex].username %>
+                    </span>
+                    <p class="text-sm py-1 px-4 mt-3 bg-indigo-800 text-indigo-50 w-fit rounded">
+                        <%= users[userIndex].email %>
+                    </p>
+                </div>
+            </div>
+            <% } %>
+
+    </section>
+</body>
+
+</html>
